@@ -1,0 +1,9 @@
+
+  .sidebarListItem {
+    &.active,
+    &:hover {
+      background-color: #d7ff68;
+      color: black;
+    }
+  }
+

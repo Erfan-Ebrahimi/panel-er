@@ -1,0 +1,66 @@
+.productList{
+    flex: 4;
+background: rgba(0, 0, 0, 0.918);
+    .list{
+        display: flex;
+        align-items: center;
+    }
+    .listImg{
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        background-color: none;
+        border: 2px solid rgb(175, 255, 143);
+    }
+    .listTitle{
+        margin-left: 10px;
+    }
+    .fi{
+        font-size: 18px; 
+                color: #d7ff68;
+
+    }
+    .fe{
+        font-size: 16px;
+                color: #d7ff68;
+
+        
+    }
+    .actionList{
+        display: flex;
+        align-items: center;
+    }
+    .alButton{
+        background: rgb(105, 255, 19);
+        border: none;
+        padding: 3px 14px;
+        color: rgb(46, 9, 9);
+        border-radius: 7px;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover{
+            color: rgb(4, 4, 8) !important;
+            background: rgb(230, 227, 105);
+        }
+    }
+    .alIcon{
+        font-size: 23px !important;
+        background: none;
+        border: none;
+        color: rgb(223, 137, 137);
+        cursor: pointer;
+        &:hover{
+            color: rgb(236, 96, 96) !important;
+        }
+    }
+    .MuiButtonBase-root{
+        color: rgb(221, 224, 20) !important;
+    }
+    .MuiDataGrid-columnHeaderTitleContainer{
+        color: rgb(228, 199, 199);
+
+    }
+    .MuiTablePagination-displayedRows{
+        color: #d7ff68;
+    }
+}
