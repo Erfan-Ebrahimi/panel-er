@@ -66,14 +66,25 @@ const UserList = () => {
 
   return (
     <div className='bg-slate-950'>
-      <DataGrid
-        rows={pep}
-        columns={columns}
-        pageSize={8}
-        rowsPerPageOptions={[8]}
-        checkboxSelection
-        disableSelectionOnClick
-      />
+      {pep.length ? (
+        <DataGrid
+          rows={pep}
+          columns={columns}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          checkboxSelection
+          disableSelectionOnClick
+        />
+
+      )
+        :
+        (
+          <div className='flex flex-col justify-center items-center w-full h-[100vh]'>
+            <p className='text-5xl text-red-400 text-center font-mono font-bold tracking-wider'>loading....</p>
+            <span className='text-xl text-purple-500 mt-5'>turn on VPN</span>
+          </div>
+        )
+      }
     </div>
   )
 }

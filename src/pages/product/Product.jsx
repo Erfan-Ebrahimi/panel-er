@@ -25,13 +25,13 @@ const Product = () => {
     <div className="product p-3 bg-slate-950">
       <div className="flex flex-row justify-between p-4">
 
-        <div className='shrink-0'>
-          <img src={pro.image} alt="" className="w-[200px] rounded-xl" />
+        <div className='shrink-0 overflow-hidden flex items-center'>
+          <img src={pro.image} alt="" className="w-[200px] h-[200px] rounded" />
         </div>
 
-        <div className="flex flex-col gap-y-2 ml-4">
+        <div className="flex flex-col justify-between gap-y-2 ml-4">
           <h1 className="text-2xl  text-yellow-600">{pro.title}</h1>
-          <p className="w-[60%] text-lg/5 text-yellow-200">{pro.description}</p>
+          <p className="w-[80%] text-lg/5 text-yellow-200">{pro.description}</p>
           <div className=''>
             <div className="flex flex-row">
               <span className="text-yellow-300">id : </span>
