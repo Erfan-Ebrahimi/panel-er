@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-key */
 /* eslint-disable react/prop-types */
-import "./widgetLg.scss";
 import { transactions } from "../../dummyData"
 
 

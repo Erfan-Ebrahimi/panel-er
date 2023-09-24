@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html::-webkit-scrollbar{
+	width: 6px;
+}
+html::-webkit-scrollbar-track{
+	background:#355d5e;
+}
+html::-webkit-scrollbar-thumb{
+	background:#020537;
+}
+html, body{
+	margin: 0;
+	padding: 0;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+
+.toast-message{
+	width: 600px;
+	color:rgb(145, 13, 13)
+}
+ 
+.MuiButtonBase-root{
+	color: rgb(190, 191, 151) !important;
+}
+.MuiDataGrid-columnHeaderTitleContainer{
+	color: rgb(173, 180, 239) !important;
+}
+.MuiTablePagination-displayedRows{
+	color: #d7ff68 !important;
+}
+.MuiTablePagination-selectLabel{
+	color: #d7ff68 !important;
+	
+}
+.MuiSelect-select{
+	color: #d7ff68 !important;
+
+}
+.MuiTablePagination-input {
+	color: #d7ff68 !important;
+
+}
+.MuiButtonBase-root{
+    color: rgb(201, 204, 0) !important;
+}
+.MuiDataGrid-columnHeaderTitleContainer{
+    text-align: left !important;
+    
+}
+.MuiTablePagination-displayedRows{
+    color: #d7ff68;
+}
+.wlButton{
+    &.Approved{
+        background-color: rgb(2, 124, 2);
+        &:hover{
+            background-color: rgb(61, 214, 61);
+            
+        }
+    }
+    &.Declined{
+        background-color: rgb(201, 23, 23);
+        &:hover{
+            background-color: rgb(255, 15, 15);
+            
+        }
+    }
+    &.Pending{
+        background-color: rgb(30, 48, 211);
+        &:hover{
+            background-color: rgb(63, 84, 202);
+            
+        }
+    }
+
+}
+.topbar {
+    border-bottom: 2px solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-image-slice: 1;
+    border-width: 1px;
+    border-image-source: radial-gradient(circle, rgba(0, 0, 0, 0) 0%, #bbff00 100%);
+}
+
+.sidebarListItem {
+    &.active,
+    &:hover {
+      background-color: #d7ff68;
+      color: black;
+    }
+}
+
+

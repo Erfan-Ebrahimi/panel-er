@@ -1,4 +1,3 @@
-import "./topbar.scss";
 import SettingsIcon from '@mui/icons-material/Settings';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import LanguageIcon from '@mui/icons-material/Language';

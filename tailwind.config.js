@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors:{
+        "yellow-1" : "#d7ff68"
+      },
       screens: {
         'xs': '480px',
         'sm': '640px',

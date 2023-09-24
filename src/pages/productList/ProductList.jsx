@@ -1,7 +1,5 @@
-import React , {useState , useEffect} from 'react';
+import {useState , useEffect} from 'react';
 import { Link } from 'react-router-dom';
-
-import "./productList.scss";
 
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -19,14 +17,12 @@ const ProductList = () => {
     axios.get("https://fakestoreapi.com/products")
         .then((response) => {
             setData(response.data)
-            console.log(response.data)
         })
         .catch(error => console.log(error))
     },[])
   
   const handleDelete = (id) => {
       setData(data.filter((item) => item.id !== id ));
-      console.log("dddddddddd")
     };
 
     const shorten = (title) => {
@@ -36,45 +32,45 @@ const ProductList = () => {
     }
   
     const columns= [
-      {field: 'id', headerName: 'ID', width: 70,headerClassName:"fi",cellClassName: 'fe', },
-      {field: 'title',headerName: 'Product',width: 170, renderCell: (params) => {
+      {field: 'id', headerName: 'ID', width: 70,headerClassName:"text-yellow-200 font-semibold text-base",cellClassName: 'text-yellow-200 font-semibold text-base', },
+      {field: 'title',headerName: 'Product-Name',width: 200, renderCell: (params) => {
         return (
-          <div className="list">
-            <img className='listImg' src={params.row.image} alt="imgUser"/>
-            <p className='listTitle'>{shorten(params.row.title)}</p>
+          <div className="flex items-center">
+            <img className='w-10 h-10 rounded-md border-4 border-green-500' src={params.row.image} alt="imgUser"/>
+            <p className='ml-2.5'>{shorten(params.row.title)}</p>
           </div>
         );
-      },headerClassName:"fi",cellClassName: 'fe'},
-      {field: 'category', headerName: 'Category', width: 150 , headerClassName:"fi",cellClassName: 'fe'},
-      {field: 'price',headerName: 'Price',width: 110,headerClassName:"fi" ,cellClassName: 'fe',renderCell: (params) => {
+      },headerClassName:"text-yellow-200 font-semibold text-base",cellClassName: 'text-yellow-200 font-semibold text-base'},
+      {field: 'category', headerName: 'Category', width: 150 , headerClassName:"text-yellow-200 font-semibold text-base",cellClassName: 'text-yellow-200 font-semibold text-base'},
+      {field: 'price',headerName: 'Price',width: 110,headerClassName:"text-yellow-200 font-semibold text-base" ,cellClassName: 'text-yellow-200 font-semibold text-base',renderCell: (params) => {
         return (
-          <div className="list">
-            <p className='listTitle'>{params.row.price} $</p>
-          </div>
-        );
-      }},
-      {field: 'rate',headerName: 'Rate', width: 90,headerClassName:"fi" ,cellClassName:"fe",renderCell: (params) => {
-        return (
-          <div className="list">
-            <p className='listTitle'>{params.row.rating.rate}</p>
+          <div className="flex items-center">
+            <p className='ml-2.5'>{params.row.price} $</p>
           </div>
         );
       }},
-      {field: 'count',headerName: 'Count', width: 90,headerClassName:"fi" ,cellClassName:"fe",renderCell: (params) => {
+      {field: 'rate',headerName: 'Rate', width: 90,headerClassName:"text-yellow-200 font-semibold text-base" ,cellClassName:"text-yellow-200 font-semibold text-base",renderCell: (params) => {
         return (
-          <div className="list">
-            <p className='listTitle'>{params.row.rating.count}</p>
+          <div className="flex items-center">
+            <p className='ml-2.5'>{params.row.rating.rate}</p>
+          </div>
+        );
+      }},
+      {field: 'count',headerName: 'Count', width: 90,headerClassName:"text-yellow-200 font-semibold text-base" ,cellClassName:"text-yellow-200 font-semibold text-base",renderCell: (params) => {
+        return (
+          <div className="flex items-center">
+            <p className='ml-2.5'>{params.row.rating.count}</p>
           </div>
         );
       }},
       
-      {field: 'action',headerName: 'Action', width: 90,headerClassName:"fi" ,cellClassName: 'fe', renderCell:(params) => {
+      {field: 'action',headerName: 'Action', width: 120,headerClassName:"text-yellow-200 font-semibold text-base" ,cellClassName: 'text-yellow-200 font-semibold text-base', renderCell:(params) => {
         return (
-          <div className='actionList'>
+          <div className='flex items-center'>
             <Link to={"/product/"+params.row.id}>
-              <button className='alButton'>More</button>
+              <button className='bg-green-600 border-none py-0.5 px-3.5 rounded-md font-bold cursor-pointer transition-colors duration-300 hover:bg-orange-600 hover:text-white'>More</button>
             </Link>
-            <DeleteOutlineIcon className='alIcon' onClick={() => handleDelete(params.row.id)}/>
+            <DeleteOutlineIcon className='text-xl bg-none border-none text-red-400 cursor-pointer hover:text-red-600 transition-colors duration-300' onClick={() => handleDelete(params.row.id)}/>
           </div>
         )
       }},
@@ -82,7 +78,7 @@ const ProductList = () => {
     ];  
 
   return (
-    <div className='productList'>
+    <div className='flex-grow bg-gray-950'>
         <DataGrid
         rows={data}
         columns={columns}
