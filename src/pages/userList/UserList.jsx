@@ -11,10 +11,10 @@ const UserList = () => {
   const [pep, setPep] = useState({});
 
   useEffect(() => {
-    axios.get("https://dummyjson.com/users")
+    axios.get("http://localhost:3000/users")
       .then((response) => {
-        setPep(response.data.users)
-        console.log(response.data.users)
+        setPep(response.data)
+        console.log(response.data)
       })
       .catch(error => console.log(error))
   }, [])
@@ -29,6 +29,7 @@ const UserList = () => {
     { field: 'id', headerName: 'ID', width: 40, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base', },
     {
       field: 'username', headerName: 'Username', width: 140, renderCell: (params) => {
+        console.log('params =>',params);
         return (
           <div className="flex items-center flex-row">
             <img className='w-10 rounded-full bg-black border border-green-400' src={params.row.image} alt="imgUser" />
@@ -43,7 +44,7 @@ const UserList = () => {
     {
       field: 'title', headerName: 'Position', width: 220, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base',
       renderCell: (params) => {
-        return <div>{params.row.company.title}</div>;
+        return <div>{params.row.title}</div>;
       }
     },
     {

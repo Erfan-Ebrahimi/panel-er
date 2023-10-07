@@ -24,10 +24,11 @@ const User = () => {
     const para = useParams();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
-        axios.get(`https://dummyjson.com/users/${(para.id)}`)
+        axios.get(`http://localhost:3000/users/${(para.id)}`)
             .then((response) => {
                 // setPep(response.data.users[Object.values(para)-1])
                 setPep(response.data)
+                console.log(response.data);
             })
             .catch(error => console.log(error))
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,7 +57,7 @@ const User = () => {
     }
 
     const sender = () => {
-        axios.patch(`https://dummyjson.com/users/${para.id}`, {
+        axios.put(`http://localhost:3000/users/${para.id}`, {
             firstName: first,
             lastName: last,
             username: username,
@@ -99,7 +100,7 @@ const User = () => {
                             </div>
                             <div className="flex items-center m-2.5">
                                 <CalendarTodayIcon className='text-2xl text-orange-400' />
-                                <span className="text-yellow-300 ml-1">{pep.birthDate}</span>
+                                <span className="text-yellow-300 ml-1">{pep.title}</span>
                             </div>
                             <span className="text-xl text-green-600 font-bold">Contact Details</span>
                             <div className="flex items-center m-2.5">
@@ -149,7 +150,7 @@ const User = () => {
                                 <div className="flex items-center">
                                     <img src={pep.image} alt="" className="w-28 h-28 rounded-full object-cover mr-2.5 bg-black border border-yellow-300" />
                                     <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="file"><PublishOutlinedIcon className='text-orange-300' /></label>
-                                    <input type="file" id='file' style={{ display: "none" }} value={img} onChange={changerImg} />
+                                    <input type="text" id='file' placeholder='link img' value={img} onChange={changerImg} />
                                 </div>
                                 <button className="border-none cursor-pointer p-2 bg-yellow-300 font-bold rounded-md hover:bg-black hover:text-yellow-300 transition-colors duration-300" onClick={sender}>Update</button>
                             </div>
