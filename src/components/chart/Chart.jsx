@@ -7,7 +7,7 @@ const Chart = ({title,grid,data,dataKey1,dataKey2}) => {
 
   return (
     <div className='m-5 p-5 shadow-md shadow-green-400/40 bg-zinc-950 rounded-md'>
-        <h3 className='mb-5 font-semibold text-xl font-Dana text-[#d7ff68]'>{title}</h3>
+        <h3 className='mb-5 text-xl font-MorabbaB text-yellow-1'>{title}</h3>
         <ResponsiveContainer width="100%" aspect={4 / 1 }>
           <LineChart width={500} height={300} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5}}>
           

@@ -97,30 +97,7 @@ tspan{
     @apply font-Dana
 
 }
-.wlButton{
-    &.Approved{
-        background-color: rgb(2, 124, 2);
-        &:hover{
-            background-color: rgb(61, 214, 61);
-            
-        }
-    }
-    &.Declined{
-        background-color: rgb(201, 23, 23);
-        &:hover{
-            background-color: rgb(255, 15, 15);
-            
-        }
-    }
-    &.Pending{
-        background-color: rgb(30, 48, 211);
-        &:hover{
-            background-color: rgb(63, 84, 202);
-            
-        }
-    }
 
-}
 .topbar {
     border-bottom: 2px solid;
     border-top: none;
