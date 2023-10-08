@@ -1,33 +1,33 @@
   export const userData = [
     {
-      name: "Jan",
-      "Active User": 4000,
-      "Deactive User":3000,
+      name: "فروردین",
+      "کاربران فعال": 4000,
+      "کاربران غیرفعال":3000,
     },
     {
-      name: "Feb",
-      "Active User": 3000,
-      "Deactive User":6000,
+      name: "اردیبهشت",
+      "کاربران فعال": 3000,
+      "کاربران غیرفعال":6000,
     },
     {
-      name: "Mar",
-      "Active User": 5000,
-      "Deactive User":8000,
+      name: "خرداد",
+      "کاربران فعال": 5000,
+      "کاربران غیرفعال":8000,
     },
     {
-      name: "Apr",
-      "Active User": 4000,
-      "Deactive User":4000,
+      name: "تیر",
+      "کاربران فعال": 4000,
+      "کاربران غیرفعال":4000,
     },
     {
-      name: "May",
-      "Active User": 3000,
-      "Deactive User":1000,
+      name: "مرداد",
+      "کاربران فعال": 3000,
+      "کاربران غیرفعال":1000,
     },
     {
-      name: "Jun",
-      "Active User": 2000,
-      "Deactive User":5000,
+      name: "شهریور",
+      "کاربران فعال": 2000,
+      "کاربران غیرفعال":5000,
     },
   ];
 

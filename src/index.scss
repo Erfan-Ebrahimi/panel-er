@@ -90,6 +90,13 @@ ol, ul {
 .MuiTablePagination-displayedRows{
     color: #d7ff68;
 }
+.recharts-legend-item-text{
+    @apply font-Dana
+}
+tspan{
+    @apply font-Dana
+
+}
 .wlButton{
     &.Approved{
         background-color: rgb(2, 124, 2);
