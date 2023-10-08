@@ -9,6 +9,14 @@ export default {
       colors:{
         "yellow-1" : "#d7ff68"
       },
+      fontFamily: {
+        "Dana" : "Dana",
+        "DanaM" : "Dana Medium",
+        "DanaB" : "Dana DemiBold",
+        "Morabba" : "Morabba Light",
+        "MorabbaM" : "Morabba Medium",
+        "MorabbaB" : "Morabba Bold",
+      },
       screens: {
         'xs': '480px',
         'sm': '640px',

@@ -7,11 +7,4 @@
 }
 
 
-.link{
-  text-decoration: none;
-  color: inherit;
-}
-.link.active>li{
-  background-color: #d7ff68;
-  color: black;
-}
+
