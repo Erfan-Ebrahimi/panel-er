@@ -32,6 +32,10 @@
         src: url("../public/asset/fonts/Morabba/woff2/Morabba-Bold.woff2") format("woff2");
         font-display: swap;
     }
+    @font-face {
+        font-family: "rf";
+        src: url("../public/asset/fonts/Morabba/woff2/Morabba-Medium.woff2");
+    }
 }
 
 html::-webkit-scrollbar{
@@ -61,34 +65,56 @@ ol, ul {
  
 .MuiButtonBase-root{
 	color: rgb(190, 191, 151) !important;
+    border: none;
+    color: #b6a700 !important;
+   
+}
+.ce{
+    text-align: center !important;
+    justify-content: center !important;
+    
+}
+.css-t89xny-MuiDataGrid-columnHeaderTitle {
+    font-family: "Morabba Medium" !important;
 }
 .MuiDataGrid-columnHeaderTitleContainer{
-	color: rgb(173, 180, 239) !important;
+    color: rgb(255, 255, 255) !important;
+    text-align: center !important;
+    justify-content: center;
 }
 .MuiTablePagination-displayedRows{
 	color: #d7ff68 !important;
+    display: none !important;
+
 }
 .MuiTablePagination-selectLabel{
 	color: #d7ff68 !important;
+    display: none !important;
 	
 }
 .MuiSelect-select{
 	color: #d7ff68 !important;
+    display: none !important;
 
+}
+.css-wop1k0-MuiDataGrid-footerContainer{
+    display: none !important;
 }
 .MuiTablePagination-input {
 	color: #d7ff68 !important;
-
 }
 .MuiButtonBase-root{
     color: rgb(201, 204, 0) !important;
+    display: none !important;
+
 }
 .MuiDataGrid-columnHeaderTitleContainer{
-    text-align: left !important;
-    
+    text-align: left !important;    
 }
 .MuiTablePagination-displayedRows{
     color: #d7ff68;
+    display: none !important;
+
 }
 .recharts-legend-item-text{
     @apply font-Dana

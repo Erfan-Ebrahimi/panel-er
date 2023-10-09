@@ -3,52 +3,63 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import Swal from 'sweetalert2';
 
 
 const UserList = () => {
 
-  const [pep, setPep] = useState({});
+  const [users, setUsers] = useState({});
 
   useEffect(() => {
     axios.get("http://localhost:3000/users")
       .then((response) => {
-        setPep(response.data)
-        console.log(response.data)
+        setUsers(response.data)
       })
       .catch(error => console.log(error))
   }, [])
 
 
   const handleDelete = (id) => {
-    setPep(pep.filter((item) => item.id !== id));
-    console.log("dddddddddd")
+    Swal.fire({
+      title: 'آیا از حذف کاربر اطمینان دارید ؟',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'انصراف',
+      denyButtonText: `حذف کاربر`,
+    }).then((result) => {
+      if (result.isDenied) {
+        Swal.fire('کاربر با موفقیت حذف شد !!!', '', 'success')
+        setUsers(users.filter((item) => item.id !== id));
+      } else if (result.isConfirmed) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
   };
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 40, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base', },
+    { field: 'id', headerName: 'ID', width: 40, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-yellow-200 font-semibold text-base', },
     {
-      field: 'username', headerName: 'Username', width: 140, renderCell: (params) => {
-        console.log('params =>',params);
+      field: 'username', headerName: 'نام و نام خانوادگی', width: 200, renderCell: (params) => {
+        console.log('params =>', params);
         return (
           <div className="flex items-center flex-row">
-            <img className='w-10 rounded-full bg-black border border-green-400' src={params.row.image} alt="imgUser" />
-            <p className='ml-2.5'>{params.row.username}</p>
+            <img className='w-10 rounded-md bg-black border border-green-100/20' src={params.row.image} alt="imgUser" />
+            <p className='mr-2 font-Dana font-thin '>{params.row.firstName}{" "}{params.row.lastName}</p>
           </div>
         );
-      }, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base'
+      }, headerClassName: "text-yellow-200 text-base", cellClassName: 'text-yellow-200 font-semibold text-base'
     },
-    { field: 'email', headerName: 'Email', width: 200, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base' },
-    { field: 'phone', headerName: 'Phone', width: 160, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "text-yellow-200 font-semibold text-base" },
-    { field: 'age', headerName: 'age', width: 90, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "text-yellow-200 font-semibold text-base" },
+    { field: 'email', headerName: 'ایمیل', width: 200, headerClassName: "text-yellow-200 font-Dana text-base", cellClassName: 'ce text-yellow-200  font-mono text-base' },
+    { field: 'phone', headerName: 'تلفن', width: 160, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "ce text-yellow-200 font-semibold text-base" },
+    { field: 'age', headerName: 'سن', width: 90, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "ce text-yellow-200 font-semibold text-base" },
     {
-      field: 'title', headerName: 'Position', width: 220, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base',
+      field: 'title', headerName: 'شغل', width: 220, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-yellow-200 font-semibold text-base',
       renderCell: (params) => {
         return <div>{params.row.title}</div>;
       }
     },
     {
-      field: 'action', headerName: 'Action', width: 90, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base', renderCell: (params) => {
+      field: 'action', headerName: 'ویرایش/حذف', width: 150, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-yellow-200 font-semibold text-base', renderCell: (params) => {
         return (
           <div className='flex items-center'>
             <Link to={`/user/${params.row.id}`}>
@@ -66,22 +77,32 @@ const UserList = () => {
 
 
   return (
-    <div className='bg-slate-950'>
-      {pep.length ? (
-        <DataGrid
-          rows={pep}
-          columns={columns}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
-          checkboxSelection
-          disableSelectionOnClick
-        />
+    <div className='bg-zinc-950'>
+      {users.length ? (
+        <div className='bg-zinc-950'>
+          <div className='text-2xl text-right text-yellow-1 py-5 pr-5 font-MorabbaB'>لیست کاربران</div>
+          <div className='w-[95%] mx-auto pb-10'>
+            <DataGrid
+              rows={users}
+              columns={columns}
+              pagination='false'
+              sx={{
+                border: 1,
+                borderColor: '#b6a700',
+                '& .MuiDataGrid-cell:hover': {
+                  color: '#fff',
+                },
+              }}
+            />
+
+          </div>
+        </div>
 
       )
         :
         (
           <div className='flex flex-col justify-center items-center w-full h-[100vh]'>
-            <p className='text-5xl text-red-400 text-center font-mono font-bold tracking-wider'>loading....</p>
+            <p className='text-5xl text-red-400 text-centerfont-bold tracking-wider font-MorabbaB'>در حال بارگذاری. . . </p>
             <span className='text-xl text-purple-500 mt-5'>turn on VPN</span>
           </div>
         )

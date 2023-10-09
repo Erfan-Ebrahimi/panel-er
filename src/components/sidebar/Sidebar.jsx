@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
   return (
-    <div className="w-[20%] bg-zinc-950">
+    <div className="w-[20%] bg-zinc-900">
       <div className="sidebarWrapper sticky top-12 p-5 text-slate-300">
         <div className="mb-2.5">
           <h3 className=" text-yellow-1 font-MorabbaB tracking-wide text-2xl font-extrabold">پنل ادمین</h3>
