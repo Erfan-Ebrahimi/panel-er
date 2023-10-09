@@ -49,13 +49,18 @@ const UserList = () => {
         );
       }, headerClassName: "text-yellow-200 text-base", cellClassName: 'text-yellow-200 font-semibold text-base'
     },
-    { field: 'email', headerName: 'ایمیل', width: 200, headerClassName: "text-yellow-200 font-Dana text-base", cellClassName: 'ce text-yellow-200  font-mono text-base' },
+    {
+      field: 'email', headerName: 'ایمیل', width: 220, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-yellow-200 font-semibold text-base',
+      renderCell: (params) => {
+        return <div className='font-mono'>{params.row.email}</div>;
+      }
+    },
     { field: 'phone', headerName: 'تلفن', width: 160, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "ce text-yellow-200 font-semibold text-base" },
     { field: 'age', headerName: 'سن', width: 90, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "ce text-yellow-200 font-semibold text-base" },
     {
-      field: 'title', headerName: 'شغل', width: 220, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-yellow-200 font-semibold text-base',
+      field: 'job', headerName: 'شغل', width: 100, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-yellow-200 font-semibold text-base',
       renderCell: (params) => {
-        return <div>{params.row.title}</div>;
+        return <div className='font-Dana'>{params.row.job}</div>;
       }
     },
     {
@@ -63,7 +68,7 @@ const UserList = () => {
         return (
           <div className='flex items-center'>
             <Link to={`/user/${params.row.id}`}>
-              <button className='border-none bg-[#a5f776] text-green-800 px-3 py-px rounded-lg cursor-pointer font-bold hover:bg-green-700 hover:text-yellow-100 transition-colors duration-300'>Edit</button>
+              <button className='border-none bg-[#a5f776] text-green-800 px-3 font-Dana text-sm py-px rounded-lg cursor-pointer  hover:bg-green-700 hover:text-yellow-100 transition-colors duration-300'>ویرایش</button>
             </Link>
             <DeleteOutlineIcon className='bg-none border-none cursor-pointer text-red-400 hover:text-red-700 transition-colors duration-300' onClick={() => handleDelete(params.row.id)} />
           </div>
@@ -77,10 +82,13 @@ const UserList = () => {
 
 
   return (
-    <div className='bg-zinc-950'>
+    <div className='bg-zinc-950 flex-grow'>
       {users.length ? (
-        <div className='bg-zinc-950'>
-          <div className='text-2xl text-right text-yellow-1 py-5 pr-5 font-MorabbaB'>لیست کاربران</div>
+        <div className='mx-auto flex flex-col w-[92%]'>
+          <div className='flex items-center justify-between mx-auto w-[91%] '>
+            <h1 className='text-2xl text-yellow-1 py-5  font-MorabbaB'>لیست کاربران</h1>
+            <button className='rounded-lg border border-red-100 text-zinc-200 px-2 py-1  font-Dana bg-green-700'>کاربر جدید</button>
+          </div>
           <div className='w-[95%] mx-auto pb-10'>
             <DataGrid
               rows={users}

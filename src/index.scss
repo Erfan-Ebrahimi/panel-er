@@ -77,6 +77,10 @@ ol, ul {
 .css-t89xny-MuiDataGrid-columnHeaderTitle {
     font-family: "Morabba Medium" !important;
 }
+.css-1lelvlo-MuiDataGrid-root .MuiDataGrid-cellContent{
+    font-family: "Dana" !important;
+
+}
 .MuiDataGrid-columnHeaderTitleContainer{
     color: rgb(255, 255, 255) !important;
     text-align: center !important;
@@ -89,12 +93,11 @@ ol, ul {
 }
 .MuiTablePagination-selectLabel{
 	color: #d7ff68 !important;
-    display: none !important;
+    // display: none !important;
 	
 }
 .MuiSelect-select{
 	color: #d7ff68 !important;
-    display: none !important;
 
 }
 .css-wop1k0-MuiDataGrid-footerContainer{
@@ -105,7 +108,6 @@ ol, ul {
 }
 .MuiButtonBase-root{
     color: rgb(201, 204, 0) !important;
-    display: none !important;
 
 }
 .MuiDataGrid-columnHeaderTitleContainer{
