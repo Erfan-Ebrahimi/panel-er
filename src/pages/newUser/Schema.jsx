@@ -1,36 +1,38 @@
 import * as yup from 'yup';  
 
-const pass = /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/;
-
 export const basicSchema = yup.object().shape({  
-  username: yup  
+  firstName: yup  
     .string()  
-    .min(5, 'Minimum 5 characters required')  
-    .required('Username is required.'),  
-  fullName: yup
+    .min(5, 'نام شما باید بیشتر از 5 حرف باشد')  
+    .required('این فیلد را تکمیل کنید.'),  
+  lastName: yup
     .string()
-    .required('Full name is required'),  
+    .min(5, 'نام خانوادگی شما باید بیشتر از 5 حرف باشد')  
+    .required('این فیلد را تکمیل کنید.'),  
   email: yup  
     .string()  
-    .email('Enter valid email id')
-    .required('Email ID is required'),  
-  password: yup
+    .email('یک ایمیل معتبر وارد کنید')
+    .required('این فیلد را تکمیل کنید.'),  
+  username: yup
     .string()
-    .min(8,"Must be more than 5 characters")
-    .matches(pass ,{message :"Password must contain at least 8 characters, one uppercase, one number and one special case character"}) 
-    .required('Password is required'),  
-  confirmPassword: yup
-    .string()
-    .oneOf([yup.ref("password") , null] , "Password must be match")
-    .required('Confirm your password'),  
+    .min(5,"نام کاربری شما باید بیشتر از 5 حرف باشد")
+    .required('این فیلد را تکمیل کنید.'),  
   phone: yup
-    .number()
-    .positive()
-    .integer()  
-    .required('Phone is required'),  
-  address: yup
     .string()
-    .required('Address is required'),    
+    .min(11,"شماره تلفن شما باید 12 رقم باشد")
+    .max(13,"شماره تلفن شما باید 12 رقم باشد")  
+    .required('این فیلد را تکمیل کنید.'),
+  age: yup
+    .string()
+    .min(1,"سن شما باید 2 رقمی باشد")
+    .max(2,"سن شما باید 2 رقمی باشد")  
+    .required('این فیلد را تکمیل کنید.'),   
+  image: yup
+    .string()
+    .required('این فیلد را تکمیل کنید.'),  
+  job: yup
+    .string()
+    .required('این فیلد را تکمیل کنید.'),    
 });
 
 

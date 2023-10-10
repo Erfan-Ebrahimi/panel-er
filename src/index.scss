@@ -32,10 +32,6 @@
         src: url("../public/asset/fonts/Morabba/woff2/Morabba-Bold.woff2") format("woff2");
         font-display: swap;
     }
-    @font-face {
-        font-family: "rf";
-        src: url("../public/asset/fonts/Morabba/woff2/Morabba-Medium.woff2");
-    }
 }
 
 html::-webkit-scrollbar{
@@ -56,6 +52,15 @@ body {
 }
 ol, ul {
 	list-style: none;
+}
+img{
+    color: rgb(235, 52, 52) !important;
+    font-family: "Dana";
+    font-size: 12px;
+}
+option{
+    font-family: "Dana";
+    background: #000;
 }
 
 .toast-message{
@@ -149,7 +154,54 @@ tspan{
     text-decoration: none;
     color: inherit;
   }
-  .link.active>li{
+.link.active>li{
     background-color: #d7ff68;
     color: black;
-  }
+}
+
+
+// -------------- SWAL -------------------//
+.swal2-title{
+    color: rgb(0, 148, 42) !important;
+    font-size: 2rem;
+    font-family: "Morabba Bold" !important; 
+}
+.swal2-confirm{
+    background: #05cb01 !important;
+    color: #fff !important;
+    font-size:1.5rem;
+    font-family: monospace !important;
+    font-weight: 800;
+    border: none !important;
+    outline: none !important;
+}
+.swal2-cancel{
+    background: rgb(255, 19, 66) !important;
+    color: #fff !important;
+    font-size:1.5rem;
+    border: none !important;
+    outline: none !important;
+    font-weight: 800;
+    font-family: monospace !important;
+}
+.swal2-container{
+    background: #0a07cd37 !important;
+    backdrop-filter: blur(5px) !important;
+}
+.swal2-modal{
+        background:#001424 !important;
+        border: 1px solid rgb(73, 194, 255);
+}
+.swal2-confirm:hover{
+    background: #fff !important;
+    color: #05cb01 !important;
+    }
+.swal2-cancel:hover{
+    background: rgb(255, 252, 252) !important;
+    color: #f10000 !important;
+        
+}
+.swal2-icon{
+    background: rgb(3, 78, 29) !important;
+    color: rgb(0, 255, 8) !important;
+}
