@@ -1,162 +1,209 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
-
-import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import ElderlyIcon from '@mui/icons-material/Elderly';
-import PublishOutlinedIcon from '@mui/icons-material/PublishOutlined';
-
+import { useParams } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { basicSchema } from '../newUser/Schema';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from 'sweetalert2';
 
 const User = () => {
 
-    const [pep, setPep] = useState({});
-    const [first, setFirst] = useState("");
-    const [last, setLast] = useState("");
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [age, setAge] = useState("");
-    const [img, setImg] = useState("");
+    const [userData, setUserData] = useState({});
+    const params = useParams();
 
-    const para = useParams();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
     useEffect(() => {
-        axios.get(`http://localhost:3000/users/${(para.id)}`)
+        axios.get(`http://localhost:3000/users/${(params.id)}`)
             .then((response) => {
-                // setPep(response.data.users[Object.values(para)-1])
-                setPep(response.data)
+                setUserData(response.data)
                 console.log(response.data);
             })
             .catch(error => console.log(error))
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const changerFirst = (event) => {
-        setFirst(event.target.value)
-    }
-    const changerLast = (event) => {
-        setLast(event.target.value)
-    }
-    const changerUsername = (event) => {
-        setUsername(event.target.value)
-    }
-    const changerEmail = (event) => {
-        setEmail(event.target.value)
-    }
-    const changerPhone = (event) => {
-        setPhone(event.target.value)
-    }
-    const changerAge = (event) => {
-        setAge(event.target.value)
-    }
-    const changerImg = (event) => {
-        setImg(event.target.value)
-    }
-
-    const sender = () => {
-        axios.put(`http://localhost:3000/users/${para.id}`, {
-            firstName: first,
-            lastName: last,
-            username: username,
-            email: email,
-            phone: phone,
-            age: age,
-            image: img,
-        }).then((response) => {
-            setPep(response.data)
-            console.log(response.data)
-        }).catch(error => console.log(error))
+    }, [params.id, userData])
 
 
+    const onSubmit = (values, actions) => {
+        Swal.fire({
+            title: 'آیا از ویرایش اطمینان دارید ؟',
+            icon: "question",
+            showCancelButton: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.put(`http://localhost:3000/users/${(params.id)}`, {
+                    firstName: values.firstName,
+                    lastName: values.lastName,
+                    email: values.email,
+                    username: values.username,
+                    phone: values.phone,
+                    age: values.age,
+                    image: values.image,
+                    job: values.job,
+                    gender: values.gender,
+                }).then((response) => {
+                    console.log(response);
+                    if (response.status == '200') {
+                        Swal.fire('کاربر با موفقیت ویرایش شد :))', '', 'success')
+                        actions.resetForm();
 
+                    }
+                }).catch(error => {
+                    Swal.fire(`دوباره تلاش کنید !!!`, '', 'error')
+                    console.log(error);
+                    actions.resetForm();
+                })
+            }
+        })
     }
+
+    const { values, errors, touched, handleChange, handleBlur, handleSubmit } = useFormik({
+        initialValues: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            username: "",
+            phone: "",
+            age: "",
+            image: "",
+            job: "",
+            gender: "",
+        },
+        onSubmit,
+        validationSchema: basicSchema,
+    })
+
+
+
+
+
     return (
         <>
-            <div className='h-[100vh] bg-slate-950 pt-10 px-5 '>
-                <div className="flex items-center justify-between">
-                    <h1 className="text-yellow-300 text-2xl font-bold">Edit User</h1>
-                    <Link to="/newUser">
-                        <button className='w-24 cursor-pointer border-none bg-teal-600 text-white py-1.5 rounded-md font-bold hover:bg-teal-100 hover:text-teal-800 transition-colors duration-300'>Create New</button>
-                    </Link>
-                </div>
-                <div className="flex mt-5">
-                    <div className="bg-slate-800 flex-1 p-5 rounded-md ">
-                        <div className="flex items-center">
-                            <img src={pep.image} alt="uImg" className="w-10 h-10 object-cover rounded-full bg-black border border-yellow-300" />
-                            <div className="flex flex-col ml-1 text-yellow-300">
-                                <span className="font-bold">{pep.firstName}</span>
-                                <span className="font-semibold">{pep.lastName}</span>
+            <div className='newUser h-[100vh] bg-zinc-950 p-5'>
+                <h1 className="text-2xl text-yellow-300 font-bold font-MorabbaB">ویرایش کاربر</h1>
 
+                <form onSubmit={handleSubmit} autoComplete="off" >
+
+                    <div className="flex flex-wrap mt-10">
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="firstName">نام</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2 ${errors.firstName && touched.firstName ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="text"
+                                id='firstName'
+                                value={values.firstName}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.firstName}
+                            />
+                            {errors.firstName && touched.firstName && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.firstName}</span>}
+                        </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="lastName">نام خانوادگی</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2 ${errors.lastName && touched.lastName ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="text"
+                                id='lastName'
+                                value={values.lastName}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.lastName}
+                            />
+                            {errors.lastName && touched.lastName && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.lastName}</span>}
+
+                        </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="email">ایمیل</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2  ${errors.email && touched.email ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="email"
+                                id='email'
+                                value={values.email}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.email}
+                            />
+                            {errors.email && touched.email && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.email}</span>}
+
+                        </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="username">نام کاربری</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2  ${errors.username && touched.username ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="text"
+                                id='username'
+                                value={values.username}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.username}
+                            />
+                            {errors.username && touched.username && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.username}</span>}
+
+                        </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="phone">شماره تلفن</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2 ${errors.phone && touched.phone ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="text"
+                                id='phone'
+                                value={values.phone}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.phone}
+                            />
+                            {errors.phone && touched.phone && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.phone}</span>}
+
+                        </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="age">سن</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2  ${errors.age && touched.age ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="text"
+                                id='age'
+                                value={values.age}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.age}
+                                 />
+                            {errors.age && touched.age && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.age}</span>}
+                        </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="image">کاور پروفایل</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2  ${errors.image && touched.image ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="text"
+                                id='image'
+                                value={values.image}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.image} />
+                            {errors.image && touched.image && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.image}</span>}
+                            <div className='w-20 h-20 mx-auto mt-5'>
+                                <img src={userData.image} alt="هیچ لینکی ارسال نشده است" className='color-red rounded-lg object-cover' />
                             </div>
                         </div>
-                        <div className="mt-5">
-                            <span className="text-xl text-green-600 font-bold">Account Details</span>
-                            <div className="flex items-center m-2.5">
-                                <PermIdentityIcon className='text-2xl text-orange-400' />
-                                <span className="text-yellow-300 ml-1">{pep.username}</span>
-                            </div>
-                            <div className="flex items-center m-2.5">
-                                <CalendarTodayIcon className='text-2xl text-orange-400' />
-                                <span className="text-yellow-300 ml-1">{pep.title}</span>
-                            </div>
-                            <span className="text-xl text-green-600 font-bold">Contact Details</span>
-                            <div className="flex items-center m-2.5">
-                                <PhoneAndroidIcon className='text-2xl text-orange-400' />
-                                <span className="text-yellow-300 ml-1">{pep.phone}</span>
-                            </div>
-                            <div className="flex items-center m-2.5">
-                                <MailOutlineIcon className='text-2xl text-orange-400' />
-                                <span className="text-yellow-300 ml-1">{pep.email}</span>
-                            </div>
-                            <div className="flex items-center m-2.5">
-                                <ElderlyIcon className='text-2xl text-orange-400' />
-                                <span className="text-yellow-300 ml-1">{pep.age} y.o</span>
-                            </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB' htmlFor="job">شغل</label>
+                            <input
+                                className={`w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2  ${errors.job && touched.job ? "border border-red-700 bg-red-700 outline-none" : ""}`}
+                                type="text"
+                                id='job'
+                                value={values.job}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                placeholder={userData.job} />
+                            {errors.job && touched.job && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.job}</span>}
+
+                        </div>
+                        <div className="flex flex-col m-5 mt-1 h-[80px]">
+                            <label className='text-yellow-300 mb-1 font-MorabbaB'>جنسیت</label>
+                            <select className='w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2 ' name="gender" id="gender" onChange={handleChange} value={values.gender}>
+                                <option className='fff' value="male">مرد</option>
+                                <option className='fff' value="female">زن</option>
+                            </select>
                         </div>
                     </div>
-                    <div className="flex-grow p-5 rounded-md bg-[#0f6e2dfb]">
-                        <span className="text-2xl text-yellow-300 font-bold">Edit</span>
-                        <form action='#' className="flex justify-between mt-2.5">
-                            <div className="uuLeft">
-                                <div className="flex flex-col mt-2">
-                                    <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="">First Name</label>
-                                    <input type="text" placeholder={pep.firstName} className='border-b border-sky-500 bg-black w-[250px] h-8 px-2 rounded-md text-yellow-200 focus:border-2 focus:bg-sky-950 outline-none' value={first} onChange={changerFirst} />
-                                </div>
-                                <div className="flex flex-col mt-2">
-                                    <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="">Last Name</label>
-                                    <input type="text" placeholder={pep.lastName} className='border-b border-sky-500 bg-black w-[250px] h-8 px-2 rounded-md text-yellow-200 focus:border-2 focus:bg-sky-950 outline-none' value={last} onChange={changerLast} />
-                                </div>
-                                <div className="flex flex-col mt-2">
-                                    <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="">Username</label>
-                                    <input type="text" placeholder={pep.username} className='border-b border-sky-500 bg-black w-[250px] h-8 px-2 rounded-md text-yellow-200 focus:border-2 focus:bg-sky-950 outline-none' value={username} onChange={changerUsername} />
-                                </div>
-                                <div className="flex flex-col mt-2">
-                                    <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="">Phone</label>
-                                    <input type="number" placeholder={pep.phone} className='border-b border-sky-500 bg-black w-[250px] h-8 px-2 rounded-md text-yellow-200 focus:border-2 focus:bg-sky-950 outline-none' value={phone} onChange={changerPhone} />
-                                </div>
-                                <div className="flex flex-col mt-2">
-                                    <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="">Email</label>
-                                    <input type="email" placeholder={pep.email} className='border-b border-sky-500 bg-black w-[250px] h-8 px-2 rounded-md text-yellow-200 focus:border-2 focus:bg-sky-950 outline-none' value={email} onChange={changerEmail} />
-                                </div>
-                                <div className="flex flex-col mt-2">
-                                    <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="">Age</label>
-                                    <input type="number" placeholder={pep.age} className='border-b border-sky-500 bg-black w-[250px] h-8 px-2 rounded-md text-yellow-200 focus:border-2 focus:bg-sky-950 outline-none' value={age} onChange={changerAge} />
-                                </div>
-                            </div>
-                            <div className="flex flex-col justify-between">
-                                <div className="flex items-center">
-                                    <img src={pep.image} alt="" className="w-28 h-28 rounded-full object-cover mr-2.5 bg-black border border-yellow-300" />
-                                    <label className='text-yellow-200 mb-1.5 font-semibold' htmlFor="file"><PublishOutlinedIcon className='text-orange-300' /></label>
-                                    <input type="text" id='file' placeholder='link img' value={img} onChange={changerImg} />
-                                </div>
-                                <button className="border-none cursor-pointer p-2 bg-yellow-300 font-bold rounded-md hover:bg-black hover:text-yellow-300 transition-colors duration-300" onClick={sender}>Update</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                    <button className="w-[180px] bg-green-500 font-Dana py-1.5 outline-none px-5 rounded-md text-black text-xl font-bold mt-10 mx-auto block cursor-pointer border-none text-center hover:bg-green-900 hover:text-white transition-colors duration-300 disabled:text-zinc-900 disabled:bg-red-500" type='submit' disabled={Object.keys(errors).length}>ثبت تغییرات</button>
+
+                </form>
             </div>
         </>
     )
