@@ -1,10 +1,9 @@
 import { useFormik } from 'formik';
 import { basicSchema } from './Schema';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const NewUser = () => {  
+const NewUser = () => {
 
   const onSubmit = (values, actions) => {
     Swal.fire({
@@ -70,7 +69,7 @@ const NewUser = () => {
               value={values.firstName}
               onChange={handleChange}
               onBlur={handleBlur}
-            // placeholder="نام را وارد کنید"
+              placeholder="نام را وارد کنید"
             />
             {errors.firstName && touched.firstName && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.firstName}</span>}
           </div>
@@ -83,7 +82,7 @@ const NewUser = () => {
               value={values.lastName}
               onChange={handleChange}
               onBlur={handleBlur}
-            // placeholder="Er"
+              placeholder="نام خانوادگی کاربر را وارد کنید"
             />
             {errors.lastName && touched.lastName && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.lastName}</span>}
 
@@ -97,7 +96,7 @@ const NewUser = () => {
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-            // placeholder="ebrahimi.erfan89@gmail.com"
+              placeholder="ایمیل کاربر را وارد کنید"
             />
             {errors.email && touched.email && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.email}</span>}
 
@@ -111,7 +110,7 @@ const NewUser = () => {
               value={values.username}
               onChange={handleChange}
               onBlur={handleBlur}
-            // placeholder="Arak-Shazand"
+              placeholder="نام کاربری را وارد کنید"
             />
             {errors.username && touched.username && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.username}</span>}
 
@@ -125,7 +124,7 @@ const NewUser = () => {
               value={values.phone}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="09181234567"
+              placeholder="شماره همراه کاربر را وارد کنید"
             />
             {errors.phone && touched.phone && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.phone}</span>}
 
@@ -139,7 +138,7 @@ const NewUser = () => {
               value={values.age}
               onChange={handleChange}
               onBlur={handleBlur}
-            // placeholder="********"
+              placeholder="سن کاربر را وارد کنید"
             />
             {errors.age && touched.age && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.age}</span>}
           </div>
@@ -168,7 +167,7 @@ const NewUser = () => {
               value={values.job}
               onChange={handleChange}
               onBlur={handleBlur}
-            // placeholder="لینک عکس را کپی کنید :)"
+              placeholder="شغل کاربر را وارد کنید"
             />
             {errors.job && touched.job && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.job}</span>}
 
@@ -176,8 +175,8 @@ const NewUser = () => {
           <div className="flex flex-col m-5 mt-1 h-[80px]">
             <label className='text-yellow-300 mb-1 font-MorabbaB'>جنسیت</label>
             <select className='w-[250px] font-Dana outline-none py-1 px-2 bg-black rounded-md border-b border-sky-400 outline text-yellow-100 focus:bg-sky-950 focus:border focus:border-sky-400 mt-2 ' name="gender" id="gender" onChange={handleChange} value={values.gender}>
-              <option  value="male">مرد</option>
-              <option  value="female">زن</option>
+              <option value="male">مرد</option>
+              <option value="female">زن</option>
             </select>
           </div>
         </div>

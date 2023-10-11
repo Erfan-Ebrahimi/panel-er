@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { basicSchema } from '../newUser/Schema';
-import 'react-toastify/dist/ReactToastify.css';
 import Swal from 'sweetalert2';
 
 const User = () => {

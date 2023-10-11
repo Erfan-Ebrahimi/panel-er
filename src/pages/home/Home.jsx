@@ -4,7 +4,7 @@ import Chart from '../../components/chart/Chart';
 import WidgetSm from '../../components/widgetSm/WidgetSm';
 import WidgetLg from '../../components/widgetLg/WidgetLg';
 // ---------- DATA -----------//
-import { userData } from "../../dummyData"
+import { userData } from "../../components/chart/dummyData"
 
 const Home = () => {
   return (

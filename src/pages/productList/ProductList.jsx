@@ -16,10 +16,10 @@ const ProductList = () => {
 
   const getProducts = () => {
     axios.get("http://localhost:3000/products")
-    .then((response) => {
-      setProducts(response.data)
-    })
-    .catch(error => console.log(error))
+      .then((response) => {
+        setProducts(response.data)
+      })
+      .catch(error => console.log(error))
   }
 
   const handleDelete = (id) => {
@@ -46,36 +46,36 @@ const ProductList = () => {
   };
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-zinc-500 font-semibold text-base', },
+    { field: 'id', headerName: 'ID', width: 70, cellClassName: 'ce text-zinc-500 font-semibold text-base', },
     {
       field: 'title', headerName: 'نام محصول', width: 260, renderCell: (params) => {
         return (
           <div className="flex items-center bg-slate-950 rounded-lg w-[250px]">
-            <img className='w-11 h-11 rounded-md border border-red-500/20' src={params.row.image} alt="imgUser" />
+            <img className='w-11 h-11 rounded-md border border-red-500/20' src={params.row.cover} alt="productImg" />
             <p className='text-zinc-500 mr-2.5 font-Dana '>{(params.row.title)}</p>
           </div>
         );
-      }, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'text-yellow-200 font-semibold text-base'
+      }, cellClassName: 'text-yellow-200 font-semibold text-base'
     },
-    { field: 'category', headerName: 'دسته بندی', width: 150, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-zinc-500 font-Dana font-semibold text-base' },
+    { field: 'category', headerName: 'دسته بندی', width: 150, cellClassName: 'ce text-zinc-500 font-Dana font-semibold text-base' },
     {
-      field: 'price', headerName: 'قیمت', width: 110, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-zinc-500 font-semibold text-base', renderCell: (params) => {
+      field: 'price', headerName: 'قیمت', width: 110, cellClassName: 'ce text-zinc-500 font-semibold text-base', renderCell: (params) => {
         return (
-          <p className='font-Dana'>{params.row.price.toLocaleString()} {' '}<span className='font-Dana text-xs'>تومان</span> {" "} </p>
+          <p className='font-Dana'>{Number(params.row.price).toLocaleString()} {' '}<span className='font-Dana text-xs'>تومان</span> {" "} </p>
         );
       }
     },
     {
-      field: 'rate', headerName: 'امتیاز کاربران', width: 140, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "ce text-zinc-500 font-semibold text-base", renderCell: (params) => {
+      field: 'rate', headerName: 'امتیاز کاربران', width: 140, cellClassName: "ce text-zinc-500 font-semibold text-base", renderCell: (params) => {
         return (
           <>
             {
-              Array(5 - Number(params.row.rating.rate)).fill(0).map((item, index) => (
+              Array(5 - Number(params.row.rate)).fill(0).map((item, index) => (
                 <StarIcon key={index} className="w-4 h-4 md:w-6 md:h-6 stroke-orange-300 text-white/10" />
               ))
             }
             {
-              Array(params.row.rating.rate).fill(0).map((item, index) => (
+              Array(Number(params.row.rate)).fill(0).map((item, index) => (
                 <StarIcon key={index} className="w-4 h-4 md:w-6 md:h-6 text-amber-600" />
               ))
             }
@@ -84,13 +84,13 @@ const ProductList = () => {
       }
     },
     {
-      field: 'count', headerName: 'موجودی', width: 90, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: "ce text-zinc-500 font-semibold text-base", renderCell: (params) => {
-        return (<p className='font-Dana'>{params.row.rating.count}</p>);
+      field: 'count', headerName: 'موجودی', width: 90, cellClassName: "ce text-zinc-500 font-semibold text-base", renderCell: (params) => {
+        return (<p className='font-Dana'>{Number(params.row.count)}</p>);
       }
     },
 
     {
-      field: 'action', headerName: 'ویرایش/حذف', width: 120, headerClassName: "text-yellow-200 font-semibold text-base", cellClassName: 'ce text-zinc-500 font-semibold text-base', renderCell: (params) => {
+      field: 'action', headerName: 'ویرایش/حذف', width: 120, cellClassName: 'ce text-zinc-500 font-semibold text-base', renderCell: (params) => {
         return (
           <div className='flex items-center'>
             <Link to={"/product/" + params.row.id}>
@@ -127,6 +127,7 @@ const ProductList = () => {
                   },
                 }}
               />
+              <span className='font-Dana text-purple-500 block text-xs pt-2'> ** برای نمایش کاور محصولات VPN را روشن کنید **</span>
             </div>
           </div>
 

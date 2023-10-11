@@ -4,8 +4,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 const Chart = ({title,grid,data,dataKey1}) => {
 
   return (
-    <div className='m-5 p-5 shadow-md shadow-green-400/40 bg-black/90 rounded-md'>
-        <h3 className='mb-5 font-semibold text-xl text-[#d7ff68]' >{title}</h3>
+    <div className='m-5 p-5 shadow-md shadow-green-400/10 bg-stone-900 rounded-md'>
+        <h3 className='mb-5 font-semibold text-xl text-yellow-1 font-MorabbaB' >{title}</h3>
         <ResponsiveContainer width="100%" aspect={4 / 1 }>
         <LineChart width={500} height={300} data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5}}>
           {grid && <CartesianGrid strokeDasharray="5 5"  stroke="#fefefe"/>}
@@ -13,7 +13,7 @@ const Chart = ({title,grid,data,dataKey1}) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey={dataKey1} stroke="#4949da" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey={dataKey1} stroke="#483f" activeDot={{ r: 8 }} />
         </LineChart>
       </ResponsiveContainer>
     </div>
