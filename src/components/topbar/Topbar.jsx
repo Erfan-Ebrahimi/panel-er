@@ -5,10 +5,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import me from "../../asset/ME.gif"
 const Topbar = () => {
   return (
-    <div className="topbar w-full h-[60px] fixed top-0 z-[999] py-2 px-3 bg-[#001404] ">
+    <div className="topbar w-full h-[60px] fixed top-0 z-[999] py-2 px-3 bg-zinc-900 ">
       <div className="h-full flex items-center justify-between">
         <div className="flex items-center">
-          <img src={me} alt="" className="w-10 h-10 rounded-lg cursor-pointer border-[1px] border-dashed border-[#d7ff68] object-cover" />
+          <img src={me} alt="" className="w-10 h-10 rounded-lg cursor-pointer border-[1px] border-yellow-1 object-cover" />
           <div className="relative cursor-pointer mr-2.5 text-[#d7ff68]">
             <NotificationsIcon />
             <span className="absolute -top-[5px] right-0 w-[15px] h-[15px] bg-red-500 text-white rounded-full flex items-center justify-center text-[10px]">2</span>

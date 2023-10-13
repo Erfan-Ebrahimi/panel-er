@@ -5,8 +5,20 @@ import WidgetSm from '../../components/widgetSm/WidgetSm';
 import WidgetLg from '../../components/widgetLg/WidgetLg';
 // ---------- DATA -----------//
 import { userData } from "../../components/chart/dummyData"
+import { useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const Home = () => {
+
+  useEffect(() => {
+    Swal.fire({
+      title: 'در حال حاضر سکشن محصولات و کاربران توسعه داده شده است __ هنوز ریسپانسیو نشده __ VPN را روشن کنید',
+      icon: "question",
+      // showCancelButton: true,
+    })
+  },[])
+
+
   return (
     <div className='h-full w-[100%] mx-auto bg-gradient-to-b from-green-900 to-slate-900'>
       <FeaturedInfo />

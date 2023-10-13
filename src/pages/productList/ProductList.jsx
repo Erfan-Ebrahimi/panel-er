@@ -18,6 +18,7 @@ const ProductList = () => {
     axios.get("http://localhost:3000/products")
       .then((response) => {
         setProducts(response.data)
+        console.log(response.data);
       })
       .catch(error => console.log(error))
   }

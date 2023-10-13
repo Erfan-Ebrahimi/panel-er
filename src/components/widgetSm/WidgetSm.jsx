@@ -1,6 +1,7 @@
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useEffect, useState } from "react"
 import axios from "axios"
+import { Link } from 'react-router-dom';
 
 
 const WidgetSm = () => {
@@ -31,9 +32,9 @@ const WidgetSm = () => {
                   <span className='text-yellow-100 text-xs font-mono'>{user.title}</span>
                 </div>
               </div>
-              <button className='flex justify-center items-center cursor-pointer border-none text-orange-300 hover:text-orange-600 transition-colors duration-300'>
+              <Link to={`/user/${user.id}`} className='flex justify-center items-center cursor-pointer border-none text-orange-300 hover:text-orange-600 transition-colors duration-300'>
                 <VisibilityIcon />
-              </button>
+              </Link>
             </li>
 
           )
