@@ -3,11 +3,9 @@ import * as yup from 'yup';
 export const basicSchema = yup.object().shape({
   firstName: yup
     .string()
-    .min(5, 'نام شما باید بیشتر از 5 حرف باشد')
     .required('این فیلد را تکمیل کنید.'),
   lastName: yup
     .string()
-    .min(5, 'نام خانوادگی شما باید بیشتر از 5 حرف باشد')
     .required('این فیلد را تکمیل کنید.'),
   email: yup
     .string()
@@ -20,12 +18,10 @@ export const basicSchema = yup.object().shape({
   phone: yup
     .number()
     .min(11, "شماره تلفن شما باید 12 رقم باشد")
-    .max(13, "شماره تلفن شما باید 12 رقم باشد")
     .required('این فیلد را تکمیل کنید.'),
   age: yup
     .number()
     .min(1, "سن شما باید 2 رقمی باشد")
-    .max(2, "سن شما باید 2 رقمی باشد")
     .required('این فیلد را تکمیل کنید.'),
   image: yup
     .string()
