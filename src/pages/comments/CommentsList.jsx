@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import StarIcon from '@mui/icons-material/Star';
 import Swal from "sweetalert2";
+import HashLoader from "react-spinners/HashLoader";
+
 
 
 const CommentsList = () => {
@@ -117,10 +119,16 @@ const CommentsList = () => {
 
     if (isLoading) {
         return (
-            <div className="flex justify-center items-center bg-red-300 w-full h-full">
-                <p className="flex justify-center items-center bg-red-300 w-full h-full">در حال بارگزاری . . . </p>
-                <span className="flex justify-center items-center bg-red-300 w-full h-full">فیلتر شکن را روشن کنید :) </span>
-            </div>
+            <div className='flex flex-col justify-center items-center w-full h-[100vh] bg-zinc-950'>
+            <p className='flex items-center text-5xl text-yellow-1 text-centerfont-bold tracking-wider font-MorabbaB'>در حال بارگذاری</p>
+            <span className='text-xl text-purple-500 my-5'>turn on VPN</span>
+            <HashLoader
+              color="#b6a740"
+              size={80}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
         );
     }
 

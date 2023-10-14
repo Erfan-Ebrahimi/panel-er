@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Swal from 'sweetalert2';
-
+import HashLoader from "react-spinners/HashLoader";
 
 const UserList = () => {
 
@@ -122,8 +122,14 @@ const UserList = () => {
         :
         (
           <div className='flex flex-col justify-center items-center w-full h-[100vh]'>
-            <p className='text-5xl text-red-400 text-centerfont-bold tracking-wider font-MorabbaB'>در حال بارگذاری. . . </p>
-            <span className='text-xl text-purple-500 mt-5'>turn on VPN</span>
+            <p className='flex items-center text-5xl text-yellow-1 text-centerfont-bold tracking-wider font-MorabbaB'>در حال بارگذاری</p>
+            <span className='text-xl text-purple-500 my-5'>turn on VPN</span>
+            <HashLoader
+              color="#b6a740"
+              size={80}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
           </div>
         )
       }

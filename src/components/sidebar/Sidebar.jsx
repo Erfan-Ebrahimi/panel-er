@@ -13,7 +13,7 @@ export default function Sidebar() {
     <div className="w-[20%] bg-zinc-900">
       <div className="sidebarWrapper sticky top-12 p-5 text-slate-300">
         <div className="mb-2.5">
-          <h3 className=" text-yellow-1 font-MorabbaB tracking-wide text-2xl font-extrabold pb-2 border-b border-yellow-1">داشبورد</h3>
+          <h3 className="text-yellow-1 font-MorabbaB tracking-wide text-2xl font-extrabold pb-2 border-b border-yellow-1">داشبورد</h3>
           <ul className="list-none px-1 py-1.5">
             <NavLink className="link" to="/">
               <li className="sidebarListItem p-0.5 cursor-pointer flex items-center gap-x-2 rounded-md mt-1 transition-colors duration-300">
@@ -48,11 +48,6 @@ export default function Sidebar() {
               </li>
 
             </NavLink>
-          </ul>
-        </div>
-        <div className="mb-2.5">
-          <h3 className=" text-yellow-1 font-MorabbaB tracking-wide text-sm font-extrabold">گزارشات</h3>
-          <ul className="list-none px-1 py-1.5">
             <NavLink to='/notDeveloped'>
               <li className="sidebarListItem p-0.5 cursor-pointer flex items-center gap-x-2 rounded-md mt-1 transition-colors duration-300 text-lg font-semibold ">
                 <TrendingUpIcon className="!text-[28px]" />
@@ -68,8 +63,7 @@ export default function Sidebar() {
               </li>
             </NavLink>
           </ul>
-        </div>
-        
+        </div>        
       </div>
     </div>
   );
