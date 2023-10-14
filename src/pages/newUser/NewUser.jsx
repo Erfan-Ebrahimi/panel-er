@@ -12,7 +12,7 @@ const NewUser = () => {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.post("http://localhost:3000/users", {
+        axios.post("https://panel-er.iran.liara.run/users", {
           firstName: values.firstName,
           lastName: values.lastName,
           email: values.email,

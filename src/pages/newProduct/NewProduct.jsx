@@ -14,7 +14,7 @@ const NewProduct = () => {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.post(`http://localhost:3000/products`, {
+        axios.post(`https://panel-er.iran.liara.run/products`, {
           title: values.title,
           price: values.price,
           description: values.description,

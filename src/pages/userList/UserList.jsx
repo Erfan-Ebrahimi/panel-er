@@ -16,7 +16,7 @@ const UserList = () => {
 
   const getUsers = () => {
 
-    axios.get("http://localhost:3000/users")
+    axios.get("https://panel-er.iran.liara.run/users")
       .then((response) => {
         setUsers(response.data)
       })
@@ -31,7 +31,7 @@ const UserList = () => {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        axios.delete(`http://localhost:3000/users/${id}`)
+        axios.delete(`https://panel-er.iran.liara.run/users/${id}`)
           .then((response) => {
             if (response.status == '200') {
               Swal.fire('کاربر با موفقیت حذف شد !!!', '', 'success')

@@ -12,7 +12,7 @@ const User = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/users/${(params.id)}`)
+        axios.get(`https://panel-er.iran.liara.run/users/${(params.id)}`)
             .then((response) => {
                 setUserData(response.data)
                 console.log(response.data);
@@ -28,7 +28,7 @@ const User = () => {
             showCancelButton: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.put(`http://localhost:3000/users/${(params.id)}`, {
+                axios.put(`https://panel-er.iran.liara.run/users/${(params.id)}`, {
                     firstName: values.firstName,
                     lastName: values.lastName,
                     email: values.email,
@@ -161,7 +161,7 @@ const User = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 placeholder={userData.age}
-                                 />
+                            />
                             {errors.age && touched.age && <span className='text-red-500 w-[240px] pt-2 font-Dana text-sm'>{errors.age}</span>}
                         </div>
                         <div className="flex flex-col m-5 mt-1 h-[80px]">

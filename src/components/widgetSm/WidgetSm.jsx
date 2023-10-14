@@ -9,7 +9,7 @@ const WidgetSm = () => {
   const [newUsers, setNewUsers] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:3000/users")
+    axios.get("https://panel-er.iran.liara.run/users")
       .then((response) => {
         setNewUsers(response.data)
         console.log(response.data)

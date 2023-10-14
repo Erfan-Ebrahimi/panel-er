@@ -21,7 +21,7 @@ const Product = () => {
   }, [])
 
   const getProduct = () => {
-    axios.get(`http://localhost:3000/products/${params.productId}`)
+    axios.get(`https://panel-er.iran.liara.run/products/${params.productId}`)
       .then((response) => {
         setProductInfo(response.data)
       })
@@ -35,7 +35,7 @@ const Product = () => {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.put(`http://localhost:3000/products/${(params.productId)}`, {
+        axios.put(`https://panel-er.iran.liara.run/products/${(params.productId)}`, {
           title: values.title,
           price: values.price,
           description: values.description,

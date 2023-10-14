@@ -16,7 +16,7 @@ const ProductList = () => {
   }, [])
 
   const getProducts = () => {
-    axios.get("http://localhost:3000/products")
+    axios.get("https://panel-er.iran.liara.run/products")
       .then((response) => {
         setProducts(response.data)
         console.log(response.data);
@@ -32,7 +32,7 @@ const ProductList = () => {
       showCancelButton: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:3000/products/${id}`, {
+        axios.delete(`https://panel-er.iran.liara.run/products/${id}`, {
         }).then((response) => {
           if (response.status == '200') {
             getProducts()

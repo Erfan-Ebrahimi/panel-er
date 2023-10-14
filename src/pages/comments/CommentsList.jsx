@@ -15,17 +15,17 @@ const CommentsList = () => {
 
 
     async function getUsers() {
-        const response = await axios.get("http://localhost:3000/users");
+        const response = await axios.get("https://panel-er.iran.liara.run/users");
         setUsers(response.data);
     }
 
     async function getProducts() {
-        const response = await axios.get("http://localhost:3000/products");
+        const response = await axios.get("https://panel-er.iran.liara.run/products");
         setProducts(response.data);
     }
 
     async function getComments() {
-        const response = await axios.get("http://localhost:3000/comments");
+        const response = await axios.get("https://panel-er.iran.liara.run/comments");
         setComments(response.data);
     }
 
@@ -69,7 +69,7 @@ const CommentsList = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axios.put(`http://localhost:3000/comments/${commentID}`, {
+                axios.put(`https://panel-er.iran.liara.run/comments/${commentID}`, {
                     cmBody: commentBody,
                     answerText: result.value,
                     isAnswer: true,
@@ -102,7 +102,7 @@ const CommentsList = () => {
             showCancelButton: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:3000/comments/${commentID}`, {
+                axios.delete(`https://panel-er.iran.liara.run/comments/${commentID}`, {
                 }).then((response) => {
                     if (response.status == '200') {
                         getComments()
@@ -120,15 +120,15 @@ const CommentsList = () => {
     if (isLoading) {
         return (
             <div className='flex flex-col justify-center items-center w-full h-[100vh] bg-zinc-950'>
-            <p className='flex items-center text-5xl text-yellow-1 text-centerfont-bold tracking-wider font-MorabbaB'>در حال بارگذاری</p>
-            <span className='text-xl text-purple-500 my-5'>turn on VPN</span>
-            <HashLoader
-              color="#b6a740"
-              size={80}
-              aria-label="Loading Spinner"
-              data-testid="loader"
-            />
-          </div>
+                <p className='flex items-center text-5xl text-yellow-1 text-centerfont-bold tracking-wider font-MorabbaB'>در حال بارگذاری</p>
+                <span className='text-xl text-purple-500 my-5'>turn on VPN</span>
+                <HashLoader
+                    color="#b6a740"
+                    size={80}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                />
+            </div>
         );
     }
 

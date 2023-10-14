@@ -7,16 +7,16 @@ import axios from "axios"
 
 const WidgetLg = () => {
 
-  const [newUsers , setNewUsers] = useState([])
+  const [newUsers, setNewUsers] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:3000/users")
-    .then((response) => {
-      setNewUsers(response.data)
-      console.log(response.data)
-    })
-    .catch(error => console.log(error))
-}, [])
+    axios.get("https://panel-er.iran.liara.run/users")
+      .then((response) => {
+        setNewUsers(response.data)
+        console.log(response.data)
+      })
+      .catch(error => console.log(error))
+  }, [])
 
   return (
     <div className='flex-grow rounded-md shadow-md shadow-green-400/40 bg-zinc-950 p-5'>
@@ -29,7 +29,7 @@ const WidgetLg = () => {
             <th className='text-center font-Dana text-yellow-500'>تلفن</th>
             <th className='text-center font-Dana text-yellow-500'>ایمیل</th>
           </tr>
-          {newUsers.slice(5,9).map((user) => {
+          {newUsers.slice(5, 9).map((user) => {
             return (
               <tr key={user.id}>
                 <td className='text-white h-10 !pt-7 text-center font-Dana'>{user.firstName}{"  "}{user.lastName}</td>
